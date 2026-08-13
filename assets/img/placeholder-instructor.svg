@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" width="720" height="900" role="img" aria-label="???? ???? ?????? ?????">
+<defs><linearGradient id="bgA" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FDEBF4"/><stop offset="100%" stop-color="#FDF0DF"/></linearGradient><linearGradient id="accA" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#E6007E"/><stop offset="100%" stop-color="#F5A623"/></linearGradient></defs>
+<rect width="720" height="900" fill="url(#bgA)"/>
+<circle cx="130" cy="170" r="200" fill="#E6007E" opacity=".08"/>
+<circle cx="640" cy="760" r="240" fill="#F5A623" opacity=".13"/>
+<ellipse cx="580" cy="210" rx="140" ry="160" fill="#E6007E" opacity=".06"/>
+<g transform="translate(360 450)" fill="none" stroke="url(#accA)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".7">
+<path d="M-126 -66a24 24 0 0 1 24-24h34l18-30h100l18 30h34a24 24 0 0 1 24 24v118a24 24 0 0 1-24 24h-204a24 24 0 0 1-24-24z"/>
+<circle cx="0" cy="0" r="48"/>
+</g>
+</svg>

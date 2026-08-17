@@ -557,8 +557,13 @@ svg[viewBox] {
   margin-top: 18px;
 }
 
-.hero .btn--primary {
+.hero .btn--primary,
+.btn--payment {
   box-shadow: 0 0 30px rgba(255, 0, 112, .48);
+}
+
+.btn--payment:hover {
+  box-shadow: 0 0 38px rgba(255, 0, 112, .58);
 }
 
 @media (max-width: 767px) {

@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  var PAYMENT_URL = 'https://app.upay.co.il/API6/s.php?m=RjEyLzVYVjJjWnB3RWtqcjZxeUZOUT09';
+
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Sticky header + mobile CTA bar ---------- */
@@ -358,6 +360,7 @@
 
       console.info('[registration] ready for checkout', payload);
       showToast('הפרטים נקלטו. מעבירה אותך לעמוד התשלום המאובטח…');
+      window.open(PAYMENT_URL, '_blank', 'noopener,noreferrer');
     });
   }
 

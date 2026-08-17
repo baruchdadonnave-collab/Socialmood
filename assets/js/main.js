@@ -46,8 +46,13 @@
     ? workshopScroll.querySelector('.workshop-stage__img')
     : null;
 
+  function isWorkshopMobileLayout() {
+    return window.matchMedia('(max-width: 767px)').matches;
+  }
+
   function updateWorkshopGenieOrigins() {
     if (!workshopStage || !workshopMobile || !workshopCards.length) return;
+    if (isWorkshopMobileLayout()) return;
 
     workshopCards.forEach(function (card) {
       card.classList.add('is-genie-measure');
@@ -105,13 +110,37 @@
     }
 
     var progress = getWorkshopProgress();
+
+    if (isWorkshopMobileLayout()) {
+      updateWorkshopMobilePairs(progress);
+      return;
+    }
+
     var total = workshopCards.length;
     var activeStep = progress <= 0.01
       ? 0
       : Math.min(total, Math.ceil(progress * total));
 
+    setWorkshopCardVisibility(function (index) {
+      return index < activeStep;
+    });
+  }
+
+  function updateWorkshopMobilePairs(progress) {
+    var pairCount = Math.ceil(workshopCards.length / 2);
+    var activePair = progress <= 0.01
+      ? 0
+      : Math.min(pairCount, Math.ceil(progress * pairCount));
+
+    setWorkshopCardVisibility(function (index) {
+      if (activePair <= 0) return false;
+      return Math.floor(index / 2) === activePair - 1;
+    });
+  }
+
+  function setWorkshopCardVisibility(isVisibleFn) {
     workshopCards.forEach(function (card, index) {
-      var visible = index < activeStep;
+      var visible = isVisibleFn(index);
       card.setAttribute('aria-hidden', visible ? 'false' : 'true');
 
       if (visible) {
@@ -122,7 +151,6 @@
 
         card.classList.remove('is-genie-out');
         card.classList.add('is-visible');
-        /* מאתחל מחדש את האנימציה גם אם הגלילה שינתה כיוון באמצע השאיבה */
         void card.offsetWidth;
         card.classList.add('is-genie-in');
         return;
@@ -139,11 +167,13 @@
 
   workshopCards.forEach(function (card) {
     card.addEventListener('animationend', function (event) {
-      if (event.animationName === 'workshop-genie-in') {
+      if (event.animationName === 'workshop-genie-in' ||
+          event.animationName === 'workshop-slide-in') {
         card.classList.remove('is-genie-in');
       }
 
-      if (event.animationName === 'workshop-genie-out') {
+      if (event.animationName === 'workshop-genie-out' ||
+          event.animationName === 'workshop-slide-out') {
         card.classList.remove('is-genie-out', 'is-visible');
       }
     });
